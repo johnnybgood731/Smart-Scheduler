@@ -4,13 +4,15 @@ class Shift {
 
     int shiftStart;
     int shiftEnd;
+    int shiftMinutes;
     byte scheduleDays;
     String shiftLabel;
     int[] availableEmployees;
 
-    Shift(int start, int end, byte days, String label, int[] availEmployees) {
+    Shift(int start, int end, int minutes, byte days, String label, int[] availEmployees) {
         this.shiftStart = start;
         this.shiftEnd = end;
+        this.shiftMinutes = minutes;
         this.scheduleDays = days;
         this.shiftLabel = label;
         this.availableEmployees = availEmployees;

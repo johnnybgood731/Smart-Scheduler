@@ -54,6 +54,14 @@ public class NewShift {
             end += 40;
         }
 
+        // Calculate how many minutes are in the shift.  I could calculate it in the calculateAvailableHours method,
+        // but I would either have to calculate it 7n times or be unable to efficiently find the shortest shift per day
+        int minutes;
+        minutes = (end % 100) - (start % 100);
+        minutes += (end / 100 - start / 100) * 60;
+        if (minutes < 0) minutes += 24 * 60;
+
+
         // Get valid user input to use as the days of the week for which the shift is available
         byte days = queryMethod.getValidDays("\nWhich days of the week will this shift be available?", true);
         scan.nextLine();
@@ -111,6 +119,6 @@ public class NewShift {
             }
         }
 
-        return new Shift(start, end, days, label, employees);
+        return new Shift(start, end, minutes, days, label, employees);
     }
 }
