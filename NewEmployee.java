@@ -11,7 +11,6 @@ class NewEmployee {
         QueryMethods queryMethod = new QueryMethods();
 
         int[] tempSchedule = new int[7];
-        int[] finalSchedule = new int[7];
         String name = "";
 
         // Get valid user input to use as the employee's full name
@@ -43,9 +42,8 @@ class NewEmployee {
             try {
                 System.out.println("How many hours per week would " + name + " like to work?");
                 hours = scan.nextFloat();
-                if(hours < 0 || hours > 168) {
+                if(hours < 0 || hours > 168)
                     System.out.println("\nPlease enter a number between 0 and 168.  You may enter up to 2 decimals.");
-                }
             } catch(java.util.InputMismatchException error) {
                 scan.next();
                 System.out.println("\nPlease enter a number between 0 and 168.  You may enter up to 2 decimals.");
@@ -56,18 +54,11 @@ class NewEmployee {
         // Get valid user input to use as days requested off and days approved off
         byte reqOff = queryMethod.getValidDays("\nWhich days has " + name + " REQUESTED off?", false);
         byte appOff = queryMethod.getValidDays("\nWhich days has " + name + " BEEN APPROVED to have off?", false);
-        for (int i = 0; i < 7; i++) {
-            // see Employee.java for an explanation of reqOff
-            if ((reqOff & (byte) Math.pow(2, i)) > 0) {
-                tempSchedule[i] = -2;
-            }
+        for (int i = 0; i < 7; i++)
             // see Employee.java for an explanation of appOff
-            if ((appOff & (byte) Math.pow(2, i)) > 0) {
+            if ((appOff & (byte) Math.pow(2, i)) > 0)
                 tempSchedule[i] = -1;
-                finalSchedule[i] = -1;
-            }
-        }
 
-        return new Employee(name, hours, reqOff, appOff, tempSchedule, finalSchedule);
+        return new Employee(name, hours, reqOff, appOff, tempSchedule);
     }
 }

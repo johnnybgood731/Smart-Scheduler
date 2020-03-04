@@ -105,7 +105,7 @@ public class NewShift {
                     System.out.println("\nYou must include at least 1 employee in order to create a new shift.");
                     newEmp = 1;
                 } else if(newEmp > 0) {
-                    if(employees[newEmp - 1] == newEmp) {  // shifts[newShift - 1] is set in line 104
+                    if(employees[newEmp - 1] == newEmp) {  // shifts[newShift - 1] is set in line 112
                         System.out.println("\nYou have already included employee #" + newEmp + ". Please choose " +
                                 "another employee or enter \"0\" to finish assigning employees to \"" + label + "\".");
                     } else {
@@ -118,7 +118,21 @@ public class NewShift {
                 System.out.println("\nPlease enter one of the numbers listed above.");
             }
         }
+        // This is inefficient, but it's a temporary band-aid to avoid restructuring code
+        // I am basically just eliminating all of the zeroes from the list to fix a bug in the selectEmployees method.
+        counter = 0;  // recycling the counter from earlier
+        for (int num : employees)
+            if (num > 0)
+                counter++;
+        int[] employees2 = new int[counter];
+        counter = 0;  // recycling again
+        for (int num : employees) {
+            if (num > 0) {
+                employees2[counter] = num;
+                counter++;
+            }
+        }
 
-        return new Shift(start, end, minutes, days, label, employees);
+        return new Shift(start, end, minutes, days, label, employees2);
     }
 }

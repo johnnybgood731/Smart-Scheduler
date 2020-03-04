@@ -7,14 +7,12 @@ class Employee {
     byte requestOff;
     byte approvedOff;
     int[] tempSchedule;
-    int[] finalSchedule;
 
-    Employee(String name, double hours, byte reqOff, byte appOff, int[] tentativeSchedule, int[] schedule) {
+    Employee(String name, double hours, byte reqOff, byte appOff, int[] tentativeSchedule) {
         this.fullName = name;
         this.desiredHours = hours;
         this.requestOff = reqOff;
         this.approvedOff = appOff;
         this.tempSchedule = tentativeSchedule;
-        this.finalSchedule = schedule;
     }
 }
